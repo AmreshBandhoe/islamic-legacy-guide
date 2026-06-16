@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as OverOnsRouteImport } from './routes/over-ons'
 import { Route as KennisbankRouteImport } from './routes/kennisbank'
 import { Route as HulpBijErfenisRouteImport } from './routes/hulp-bij-erfenis'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BijLevenRegelenRouteImport } from './routes/bij-leven-regelen'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const HulpBijErfenisRoute = HulpBijErfenisRouteImport.update({
   path: '/hulp-bij-erfenis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BijLevenRegelenRoute = BijLevenRegelenRouteImport.update({
   id: '/bij-leven-regelen',
   path: '/bij-leven-regelen',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bij-leven-regelen': typeof BijLevenRegelenRoute
+  '/contact': typeof ContactRoute
   '/hulp-bij-erfenis': typeof HulpBijErfenisRoute
   '/kennisbank': typeof KennisbankRoute
   '/over-ons': typeof OverOnsRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bij-leven-regelen': typeof BijLevenRegelenRoute
+  '/contact': typeof ContactRoute
   '/hulp-bij-erfenis': typeof HulpBijErfenisRoute
   '/kennisbank': typeof KennisbankRoute
   '/over-ons': typeof OverOnsRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bij-leven-regelen': typeof BijLevenRegelenRoute
+  '/contact': typeof ContactRoute
   '/hulp-bij-erfenis': typeof HulpBijErfenisRoute
   '/kennisbank': typeof KennisbankRoute
   '/over-ons': typeof OverOnsRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/bij-leven-regelen'
+    | '/contact'
     | '/hulp-bij-erfenis'
     | '/kennisbank'
     | '/over-ons'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/bij-leven-regelen'
+    | '/contact'
     | '/hulp-bij-erfenis'
     | '/kennisbank'
     | '/over-ons'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/bij-leven-regelen'
+    | '/contact'
     | '/hulp-bij-erfenis'
     | '/kennisbank'
     | '/over-ons'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BijLevenRegelenRoute: typeof BijLevenRegelenRoute
+  ContactRoute: typeof ContactRoute
   HulpBijErfenisRoute: typeof HulpBijErfenisRoute
   KennisbankRoute: typeof KennisbankRoute
   OverOnsRoute: typeof OverOnsRoute
@@ -118,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HulpBijErfenisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/bij-leven-regelen': {
       id: '/bij-leven-regelen'
       path: '/bij-leven-regelen'
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BijLevenRegelenRoute: BijLevenRegelenRoute,
+  ContactRoute: ContactRoute,
   HulpBijErfenisRoute: HulpBijErfenisRoute,
   KennisbankRoute: KennisbankRoute,
   OverOnsRoute: OverOnsRoute,
