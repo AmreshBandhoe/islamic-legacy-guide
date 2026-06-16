@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OverOnsRouteImport } from './routes/over-ons'
+import { Route as KennisbankRouteImport } from './routes/kennisbank'
+import { Route as HulpBijErfenisRouteImport } from './routes/hulp-bij-erfenis'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BijLevenRegelenRouteImport } from './routes/bij-leven-regelen'
 import { Route as IndexRouteImport } from './routes/index'
 
+const OverOnsRoute = OverOnsRouteImport.update({
+  id: '/over-ons',
+  path: '/over-ons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KennisbankRoute = KennisbankRouteImport.update({
+  id: '/kennisbank',
+  path: '/kennisbank',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HulpBijErfenisRoute = HulpBijErfenisRouteImport.update({
+  id: '/hulp-bij-erfenis',
+  path: '/hulp-bij-erfenis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BijLevenRegelenRoute = BijLevenRegelenRouteImport.update({
+  id: '/bij-leven-regelen',
+  path: '/bij-leven-regelen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,102 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bij-leven-regelen': typeof BijLevenRegelenRoute
+  '/contact': typeof ContactRoute
+  '/hulp-bij-erfenis': typeof HulpBijErfenisRoute
+  '/kennisbank': typeof KennisbankRoute
+  '/over-ons': typeof OverOnsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bij-leven-regelen': typeof BijLevenRegelenRoute
+  '/contact': typeof ContactRoute
+  '/hulp-bij-erfenis': typeof HulpBijErfenisRoute
+  '/kennisbank': typeof KennisbankRoute
+  '/over-ons': typeof OverOnsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bij-leven-regelen': typeof BijLevenRegelenRoute
+  '/contact': typeof ContactRoute
+  '/hulp-bij-erfenis': typeof HulpBijErfenisRoute
+  '/kennisbank': typeof KennisbankRoute
+  '/over-ons': typeof OverOnsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bij-leven-regelen'
+    | '/contact'
+    | '/hulp-bij-erfenis'
+    | '/kennisbank'
+    | '/over-ons'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bij-leven-regelen'
+    | '/contact'
+    | '/hulp-bij-erfenis'
+    | '/kennisbank'
+    | '/over-ons'
+  id:
+    | '__root__'
+    | '/'
+    | '/bij-leven-regelen'
+    | '/contact'
+    | '/hulp-bij-erfenis'
+    | '/kennisbank'
+    | '/over-ons'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BijLevenRegelenRoute: typeof BijLevenRegelenRoute
+  ContactRoute: typeof ContactRoute
+  HulpBijErfenisRoute: typeof HulpBijErfenisRoute
+  KennisbankRoute: typeof KennisbankRoute
+  OverOnsRoute: typeof OverOnsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/over-ons': {
+      id: '/over-ons'
+      path: '/over-ons'
+      fullPath: '/over-ons'
+      preLoaderRoute: typeof OverOnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kennisbank': {
+      id: '/kennisbank'
+      path: '/kennisbank'
+      fullPath: '/kennisbank'
+      preLoaderRoute: typeof KennisbankRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hulp-bij-erfenis': {
+      id: '/hulp-bij-erfenis'
+      path: '/hulp-bij-erfenis'
+      fullPath: '/hulp-bij-erfenis'
+      preLoaderRoute: typeof HulpBijErfenisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bij-leven-regelen': {
+      id: '/bij-leven-regelen'
+      path: '/bij-leven-regelen'
+      fullPath: '/bij-leven-regelen'
+      preLoaderRoute: typeof BijLevenRegelenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +157,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BijLevenRegelenRoute: BijLevenRegelenRoute,
+  ContactRoute: ContactRoute,
+  HulpBijErfenisRoute: HulpBijErfenisRoute,
+  KennisbankRoute: KennisbankRoute,
+  OverOnsRoute: OverOnsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
