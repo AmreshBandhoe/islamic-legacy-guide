@@ -1,11 +1,20 @@
-// Unsplash source URLs — automatically resolves a relevant photo from search terms.
+// Locally generated, on-brand imagery — beschrijvingen passen bij de tekst per pagina.
+import homeHero from "@/assets/home-hero.jpg";
+import homeWhy from "@/assets/home-why.jpg";
+import hulpHero from "@/assets/hulp-hero.jpg";
+import bijlevenHero from "@/assets/bijleven-hero.jpg";
+import kennisbankHero from "@/assets/kennisbank-hero.jpg";
+import kennisbankAtmosphere from "@/assets/kennisbank-atmosphere.jpg";
+import teamHero from "@/assets/team-hero.jpg";
+import contactHero from "@/assets/contact-hero.jpg";
+
 export const images = {
-  homeHero: "https://source.unsplash.com/1600x1000/?muslim,family,smiling,modern",
-  homeWhy: "https://source.unsplash.com/1200x1200/?muslim,family,home",
-  hulpHero: "https://source.unsplash.com/1600x1000/?muslim,professional,woman,hijab",
-  bijlevenHero: "https://source.unsplash.com/1600x1000/?muslim,man,beard,professional",
-  kennisbankHero: "https://source.unsplash.com/1600x1000/?mosque,architecture,detail",
-  kennisbankAtmosphere: "https://source.unsplash.com/1200x800/?arabic,calligraphy,minimal",
-  teamHero: "https://source.unsplash.com/1600x1000/?muslim,community,modern",
-  contactHero: "https://source.unsplash.com/1600x1000/?mosque,interior,light",
+  homeHero,
+  homeWhy,
+  hulpHero,
+  bijlevenHero,
+  kennisbankHero,
+  kennisbankAtmosphere,
+  teamHero,
+  contactHero,
 };
