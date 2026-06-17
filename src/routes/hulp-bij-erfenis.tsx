@@ -4,6 +4,7 @@ import { ContentHero } from "@/components/ContentHero";
 import { CtaSection } from "@/components/CtaSection";
 import { Disclaimer } from "@/components/Disclaimer";
 import { images } from "@/lib/images";
+import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/hulp-bij-erfenis")({
   head: () => ({
@@ -27,38 +28,19 @@ export const Route = createFileRoute("/hulp-bij-erfenis")({
   component: HulpBijErfenis,
 });
 
-const sections = [
-  {
-    icon: BookOpen,
-    title: "Wat is fara'id (islamitisch erfrecht)?",
-    text: "Fara'id is het deel van de sharia dat gaat over de verdeling van een nalatenschap. Het beschrijft welke familieleden recht hebben op een vast aandeel en welke verhoudingen daarbij gelden. De regels zijn gedetailleerd en houden rekening met de relatie tot de overledene, het geslacht en de aanwezigheid van andere erfgenamen.",
-  },
-  {
-    icon: Scale,
-    title: "Hoe verhoudt islamitisch erfrecht zich tot Nederlands recht?",
-    text: "In Nederland geldt het Nederlandse erfrecht, ook voor moslims. Wel kunt u via een testament veel zelf bepalen. Door bewuste keuzes vast te leggen — bijvoorbeeld via legaten of een specifieke verdeling — kan uw nalatenschap aansluiten op uw geloof binnen de grenzen van de Nederlandse wet.",
-  },
-  {
-    icon: ScrollText,
-    title: "Wat gebeurt er als er geen testament is?",
-    text: "Zonder testament wordt de nalatenschap verdeeld volgens het wettelijke Nederlandse erfrecht. Dat kan afwijken van wat u vanuit islamitisch perspectief gewenst zou hebben. Een testament is daarom voor veel moslims een belangrijke manier om regie te houden over de verdeling.",
-  },
-  {
-    icon: Users2,
-    title: "Wat kan een notaris voor u betekenen?",
-    text: "Een notaris kan u helpen een testament op te stellen dat juridisch geldig is in Nederland en aansluit bij uw wensen. Sommige notarissen hebben ervaring met islamitische testamenten. Zij vertalen uw wensen naar een document dat in Nederland kan worden uitgevoerd.",
-  },
-];
+const sectionIcons = [BookOpen, Scale, ScrollText, Users2] as const;
 
 function HulpBijErfenis() {
+  const t = useT();
+  const sections = t.hulp.sections.map((s, i) => ({ ...s, icon: sectionIcons[i] }));
   return (
     <>
       <ContentHero
         image={images.hulpHero}
-        imageAlt="Professionele moslima met hoofddoek in gesprek — warme, vertrouwelijke sfeer"
-        eyebrow="Voor moslims in Nederland"
-        title="Hulp bij erfenis vanuit islamitisch perspectief"
-        intro="Wanneer een dierbare overlijdt, komt er veel op u af. De Islamitische Erfeniswijzer biedt u overzicht en rust. We leggen uit hoe de verdeling van een nalatenschap werkt — zowel volgens de islamitische regels als binnen het Nederlandse rechtsstelsel."
+        imageAlt={t.hulp.imageAlt}
+        eyebrow={t.hulp.eyebrow}
+        title={t.hulp.title}
+        intro={t.hulp.intro}
       />
 
       <section className="bg-background py-24">
@@ -86,8 +68,8 @@ function HulpBijErfenis() {
       </section>
 
       <CtaSection
-        title="Wilt u uw situatie bespreken?"
-        text="Wij geven algemene informatie, geen juridisch advies. Voor een testament of persoonlijke begeleiding verwijzen wij u door naar een notaris."
+        title={t.hulp.ctaTitle}
+        text={t.hulp.ctaText}
       />
     </>
   );

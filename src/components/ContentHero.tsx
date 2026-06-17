@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { useI18n } from "@/lib/i18n";
 
 interface ContentHeroProps {
   image: string;
@@ -17,9 +18,11 @@ export function ContentHero({
   eyebrow,
   title,
   intro,
-  ctaLabel = "Neem contact op",
+  ctaLabel,
   ctaTo = "/contact",
 }: ContentHeroProps) {
+  const { t } = useI18n();
+  const label = ctaLabel ?? t.common.cta;
   return (
     <section className="relative isolate overflow-hidden">
       <img
@@ -47,7 +50,7 @@ export function ContentHero({
               size="lg"
               className="rounded-full bg-accent px-8 py-6 text-base text-accent-foreground shadow-lg hover:bg-accent/90"
             >
-              <Link to={ctaTo}>{ctaLabel}</Link>
+              <Link to={ctaTo}>{label}</Link>
             </Button>
           </div>
         </div>

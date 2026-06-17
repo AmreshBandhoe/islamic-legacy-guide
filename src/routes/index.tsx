@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Disclaimer } from "@/components/Disclaimer";
 import { images } from "@/lib/images";
+import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,38 +35,20 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const blocks = [
-  {
-    icon: Scale,
-    title: "Islamitisch erfrecht in Nederland",
-    text: "Islamitisch erfrecht (fara'id) en het Nederlandse recht bestaan naast elkaar. Via een testament is er in Nederland veel mogelijk om uw nalatenschap aan te laten sluiten op uw geloof.",
-  },
-  {
-    icon: ScrollText,
-    title: "Wat kunt u zelf regelen?",
-    text: "Denk aan een islamitisch testament, een legaat aan dierbaren of een goed doel, en schenkingen bij leven (hiba). Wij leggen de mogelijkheden helder uit.",
-  },
-  {
-    icon: Users,
-    title: "Geen verrassingen voor uw nabestaanden",
-    text: "Tijdig plannen en open communicatie voorkomen onduidelijkheid en spanningen binnen de familie — en geven uw nabestaanden rust.",
-  },
-];
-
-const highlights = [
-  { icon: BookOpen, label: "Begrijpelijke uitleg", text: "Heldere taal, geen jargon" },
-  { icon: HandHeart, label: "Respectvol", text: "Met aandacht voor uw geloof" },
-  { icon: ShieldCheck, label: "Onafhankelijk", text: "Wij verkopen geen producten" },
-];
+const blockIcons = [Scale, ScrollText, Users] as const;
+const highlightIcons = [BookOpen, HandHeart, ShieldCheck] as const;
 
 function Index() {
+  const t = useT();
+  const blocks = t.home.blocks.map((b, i) => ({ ...b, icon: blockIcons[i] }));
+  const highlights = t.home.highlights.map((h, i) => ({ ...h, icon: highlightIcons[i] }));
   return (
     <>
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
         <img
           src={images.homeHero}
-          alt="Modern moslimgezin dat samen lacht — een lachend stel met hun kinderen, warme en positieve sfeer"
+          alt={t.home.heroImageAlt}
           width={1920}
           height={1080}
           className="absolute inset-0 h-full w-full object-cover"
@@ -74,17 +57,13 @@ function Index() {
         <div className="relative mx-auto flex min-h-[78vh] max-w-6xl flex-col justify-center px-4 py-24 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <p className="mb-5 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-              Uw gids bij nalatenschap volgens islamitisch erfrecht en Nederlands recht
+              {t.home.heroEyebrow}
             </p>
             <h1 className="text-5xl leading-[1.05] text-primary-foreground sm:text-6xl md:text-7xl">
-              Uw nalatenschap regelen met rust, zorg en islamitische waarden
+              {t.home.heroTitle}
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-primary-foreground/90 sm:text-xl">
-              Als moslim in Nederland wilt u uw nalatenschap zo regelen dat het
-              recht doet aan uw geloof én aan de Nederlandse wet. De Islamitische
-              Erfeniswijzer helpt u begrijpen hoe islamitisch erfrecht en
-              Nederlands recht samenkomen — zodat u met een gerust hart kunt
-              nadenken over de toekomst van uw dierbaren.
+              {t.home.heroIntro}
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Button
@@ -93,7 +72,7 @@ function Index() {
                 className="rounded-full bg-accent px-8 py-6 text-base text-accent-foreground shadow-lg hover:bg-accent/90"
               >
                 <Link to="/hulp-bij-erfenis">
-                  Ontdek uw mogelijkheden
+                  {t.home.heroCta}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -103,7 +82,7 @@ function Index() {
                 variant="outline"
                 className="rounded-full border-primary-foreground/40 bg-primary-foreground/5 px-8 py-6 text-base text-primary-foreground backdrop-blur-sm hover:bg-primary-foreground/15 hover:text-primary-foreground"
               >
-                <Link to="/kennisbank">Naar de kennisbank</Link>
+                <Link to="/kennisbank">{t.home.heroCta2}</Link>
               </Button>
             </div>
           </div>
@@ -115,14 +94,13 @@ function Index() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-              Wat vindt u hier?
+              {t.home.sectionEyebrow}
             </p>
             <h2 className="text-3xl text-primary sm:text-4xl">
-              Begrijpelijke informatie, met respect voor uw geloof
+              {t.home.sectionTitle}
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              Drie onderwerpen die voor veel moslims in Nederland spelen rondom
-              nalatenschap.
+              {t.home.sectionIntro}
             </p>
           </div>
 
@@ -157,7 +135,7 @@ function Index() {
               <div className="overflow-hidden rounded-3xl shadow-[var(--shadow-elegant)]">
                 <img
                   src={images.homeWhy}
-                  alt="Moslimgezin thuis — moeder met hoofddoek en kinderen in een warme huiselijke sfeer"
+                  alt={t.home.whyImageAlt}
                   width={1200}
                   height={1200}
                   loading="lazy"
@@ -168,16 +146,13 @@ function Index() {
             </div>
             <div className="order-1 lg:order-2">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-                Waarom De Islamitische Erfeniswijzer?
+                {t.home.whyEyebrow}
               </p>
               <h2 className="text-3xl text-primary sm:text-4xl">
-                Geloof, familie en wet — zorgvuldig samengebracht
+                {t.home.whyTitle}
               </h2>
               <p className="mt-5 max-w-lg text-lg leading-relaxed text-muted-foreground">
-                Voor veel moslims in Nederland voelt nadenken over nalatenschap
-                kwetsbaar. Wij bieden geen juridisch advies, maar wel een rustige
-                en respectvolle ingang om u te oriënteren — zodat u met de juiste
-                vragen naar een notaris kunt gaan.
+                {t.home.whyText}
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {highlights.map((h) => (
@@ -200,12 +175,10 @@ function Index() {
       <section className="bg-primary py-24 text-primary-foreground">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-3xl text-primary-foreground sm:text-4xl">
-            Heeft u een vraag over islamitisch erfrecht?
+            {t.home.ctaTitle}
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-primary-foreground/85">
-            Stel uw vraag gerust. Wij geven uitleg en helpen u op weg, maar voor
-            een testament of juridische stappen verwijzen wij u door naar een
-            notaris.
+            {t.home.ctaText}
           </p>
           <Button
             asChild
@@ -213,7 +186,7 @@ function Index() {
             className="mt-10 rounded-full bg-accent px-8 py-6 text-base text-accent-foreground shadow-lg hover:bg-accent/90"
           >
             <Link to="/contact">
-              Stel uw vraag
+              {t.home.ctaButton}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>

@@ -4,6 +4,7 @@ import { ContentHero } from "@/components/ContentHero";
 import { CtaSection } from "@/components/CtaSection";
 import { Disclaimer } from "@/components/Disclaimer";
 import { images } from "@/lib/images";
+import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/over-ons")({
   head: () => ({
@@ -27,55 +28,27 @@ export const Route = createFileRoute("/over-ons")({
   component: OverOns,
 });
 
-const values = [
-  {
-    icon: Heart,
-    title: "Respectvol",
-    text: "Wij benaderen nalatenschap met aandacht voor uw geloof, uw familie en uw verhaal.",
-  },
-  {
-    icon: BookOpen,
-    title: "Begrijpelijk",
-    text: "Wij vertalen ingewikkelde onderwerpen naar heldere taal die voor iedereen toegankelijk is.",
-  },
-  {
-    icon: Compass,
-    title: "Onafhankelijk",
-    text: "Wij verkopen geen producten en geven geen juridisch advies — wij wijzen u de weg.",
-  },
-];
+const valueIcons = [Heart, BookOpen, Compass] as const;
 
 function OverOns() {
+  const t = useT();
+  const values = t.over.values.map((v, i) => ({ ...v, icon: valueIcons[i] }));
   return (
     <>
       <ContentHero
         image={images.teamHero}
-        imageAlt="Moderne Nederlandse moslimgemeenschap — diverse, warme uitstraling"
-        eyebrow="Wie wij zijn"
-        title="Over De Islamitische Erfeniswijzer"
-        intro="Wij geloven dat iedereen — ongeacht achtergrond of religie — verdient om dit belangrijke onderwerp begrijpelijk en toegankelijk aangeboden te krijgen."
+        imageAlt={t.over.imageAlt}
+        eyebrow={t.over.eyebrow}
+        title={t.over.title}
+        intro={t.over.intro}
       />
 
       <section className="bg-background py-24">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
-            <p>
-              De Islamitische Erfeniswijzer is opgericht om moslims in Nederland
-              te ondersteunen bij het nadenken over hun nalatenschap. Veel mensen
-              vinden dit een moeilijk onderwerp om te beginnen — zeker wanneer
-              islamitisch erfrecht en Nederlands recht beide een rol spelen.
-            </p>
-            <p>
-              Wij geloven dat iedereen — ongeacht achtergrond of religie —
-              verdient om dit belangrijke onderwerp begrijpelijk en toegankelijk
-              aangeboden te krijgen. Daarom bieden wij informatie en heldere
-              uitleg, met respect voor uw geloofsovertuiging.
-            </p>
-            <p>
-              Wij bieden informatie, geen juridisch advies. Voor het opstellen
-              van een testament of andere juridische stappen verwijzen wij u
-              altijd door naar een erkende notaris.
-            </p>
+            {t.over.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
 
           <Disclaimer className="mt-10" />
@@ -86,10 +59,10 @@ function OverOns() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
-              Onze waarden
+              {t.over.valuesEyebrow}
             </p>
             <h2 className="text-3xl text-primary sm:text-4xl">
-              Waar wij voor staan
+              {t.over.valuesTitle}
             </h2>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
