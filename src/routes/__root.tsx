@@ -90,6 +90,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "De Islamitische Erfeniswijzer" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Islamitische Erfeniswijzer | Nalatenschap & Erfrecht" },
+      { name: "twitter:title", content: "Islamitische Erfeniswijzer | Nalatenschap & Erfrecht" },
+      { name: "description", content: "De Islamitische Erfeniswijzer is een gids voor nalatenschap volgens islamitisch en Nederlands recht." },
+      { property: "og:description", content: "De Islamitische Erfeniswijzer is een gids voor nalatenschap volgens islamitisch en Nederlands recht." },
+      { name: "twitter:description", content: "De Islamitische Erfeniswijzer is een gids voor nalatenschap volgens islamitisch en Nederlands recht." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8411fe20-46fd-47ca-9e4d-c3f841563bed/id-preview-b253bca1--cd030dc8-dee1-4c14-9a34-fa0b62af13ef.lovable.app-1781672296249.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8411fe20-46fd-47ca-9e4d-c3f841563bed/id-preview-b253bca1--cd030dc8-dee1-4c14-9a34-fa0b62af13ef.lovable.app-1781672296249.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
