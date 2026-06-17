@@ -4,6 +4,7 @@ import { ContentHero } from "@/components/ContentHero";
 import { CtaSection } from "@/components/CtaSection";
 import { Disclaimer } from "@/components/Disclaimer";
 import { images } from "@/lib/images";
+import { useT } from "@/lib/i18n";
 
 export const Route = createFileRoute("/bij-leven-regelen")({
   head: () => ({
@@ -27,38 +28,19 @@ export const Route = createFileRoute("/bij-leven-regelen")({
   component: BijLevenRegelen,
 });
 
-const topics = [
-  {
-    icon: ScrollText,
-    title: "Een islamitisch testament opstellen (via notaris)",
-    text: "Met een testament kunt u in Nederland veel zelf bepalen over de verdeling van uw nalatenschap. Een notaris helpt u dit juridisch correct vast te leggen. Sommige notarissen hebben ervaring met testamenten die rekening houden met islamitische uitgangspunten.",
-  },
-  {
-    icon: Gift,
-    title: "Schenken bij leven (hiba)",
-    text: "Hiba is een schenking bij leven en wordt in de islam aanbevolen als manier om uw dierbaren reeds tijdens uw leven te ondersteunen. Het kan ook fiscaal gunstig zijn binnen de Nederlandse schenkingsregels.",
-  },
-  {
-    icon: HandHeart,
-    title: "Vastleggen van wensen rondom overlijden",
-    text: "Denk aan wensen rondom de begrafenis (ghusl, kafan, janazah) en aan een wasiyya: een testamentaire wens waarin u bijvoorbeeld een bedrag of zaak nalaat aan een goed doel of een persoon buiten de wettelijke erfgenamen.",
-  },
-  {
-    icon: Building2,
-    title: "Waqf (islamitische stichting / liefdadige bestemming)",
-    text: "Een waqf is een vorm van blijvende sadaqah waarbij bezit wordt bestemd voor een liefdadig doel. In Nederland kan dit vorm krijgen via een stichting of via een legaat aan een bestaand goed doel. Een notaris of fiscalist kan u hierin begeleiden.",
-  },
-];
+const topicIcons = [ScrollText, Gift, HandHeart, Building2] as const;
 
 function BijLevenRegelen() {
+  const t = useT();
+  const topics = t.bijleven.topics.map((tp, i) => ({ ...tp, icon: topicIcons[i] }));
   return (
     <>
       <ContentHero
         image={images.bijlevenHero}
-        imageAlt="Moslim met baard, professionele uitstraling, denkt rustig na — symbool voor bij leven zaken regelen"
-        eyebrow="Een daad van zorg"
-        title="Bij leven regelen — een daad van zorg voor uw nabestaanden"
-        intro="In de islam wordt het sterk aanbevolen om tijdig uw zaken te regelen. „Schrijf uw testament, want een moslim mag niet twee nachten slapen zonder zijn testament op te hebben geschreven.” (overlevering). Op deze pagina leest u welke stappen u bij leven kunt zetten."
+        imageAlt={t.bijleven.imageAlt}
+        eyebrow={t.bijleven.eyebrow}
+        title={t.bijleven.title}
+        intro={t.bijleven.intro}
       />
 
       <section className="bg-background py-24">
@@ -87,8 +69,8 @@ function BijLevenRegelen() {
       </section>
 
       <CtaSection
-        title="Klaar om de eerste stap te zetten?"
-        text="Stel uw vraag of laat ons u op weg helpen met heldere informatie. Voor het opstellen van een testament verwijzen wij u door naar een erkende notaris."
+        title={t.bijleven.ctaTitle}
+        text={t.bijleven.ctaText}
       />
     </>
   );
