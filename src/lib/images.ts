@@ -1,19 +1,11 @@
-import homeHero from "@/assets/images/1.jpg";
-import homeWhy from "@/assets/images/2.jpeg";
-import hulpHero from "@/assets/images/3.png";
-import bijlevenHero from "@/assets/images/4.png";
-import kennisbankHero from "@/assets/images/3.png";
-import kennisbankAtmosphere from "@/assets/images/1.jpg";
-import teamHero from "@/assets/images/4.png";
-import contactHero from "@/assets/images/2.jpeg";
-
+// Unsplash source URLs — automatically resolves a relevant photo from search terms.
 export const images = {
-  homeHero,
-  homeWhy,
-  hulpHero,
-  bijlevenHero,
-  kennisbankHero,
-  kennisbankAtmosphere,
-  teamHero,
-  contactHero,
+  homeHero: "https://source.unsplash.com/1600x1000/?muslim,family,smiling,modern",
+  homeWhy: "https://source.unsplash.com/1200x1200/?muslim,family,home",
+  hulpHero: "https://source.unsplash.com/1600x1000/?muslim,professional,woman,hijab",
+  bijlevenHero: "https://source.unsplash.com/1600x1000/?muslim,man,beard,professional",
+  kennisbankHero: "https://source.unsplash.com/1600x1000/?mosque,architecture,detail",
+  kennisbankAtmosphere: "https://source.unsplash.com/1200x800/?arabic,calligraphy,minimal",
+  teamHero: "https://source.unsplash.com/1600x1000/?muslim,community,modern",
+  contactHero: "https://source.unsplash.com/1600x1000/?mosque,interior,light",
 };
